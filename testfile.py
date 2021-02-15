@@ -57,20 +57,19 @@ import pygame as pg
 #     pg.quit()
 
 pg.init()
-screen = pg.display.set_mode((800, 800))
+screen = pg.display.set_mode((750, 750))
 screen.fill([255, 255, 255])
-font = pg.font.Font('bigcaslon.ttf', 32)
+font = pg.font.Font('freesansbold.ttf', 32)
 
-img = font.render('another test', True, 'BLACK')
-rect = img.get_rect()
-pg.draw.rect(img, 'WHITE', rect, 1) 
+txt = 'NAME:'
+img = font.render(txt, True, 'BLACK')
 
 running = True
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
-    screen.blit(img, (200, 200))
+    screen.blit(img, (25, 25))
     pg.display.flip()
 pg.quit()
 

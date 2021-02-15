@@ -17,5 +17,4 @@ class TextBox():
         self.createText()
     
     def createText(self):
-        
-    
+        pass
