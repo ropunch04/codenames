@@ -6,7 +6,7 @@ screen.fill([0, 0, 0])
 FONT = pg.font.Font(None, 32)
 
 class TextBox():
-    def __init__(self, x, y , w, h, color, size, text = ''):
+    def __init__(self, coords, dimensions, color, text = ''):
         self.x = x
         self.y = y
         self.w = w
