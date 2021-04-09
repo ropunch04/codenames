@@ -1,6 +1,7 @@
+import random
 import pygame as pg
 from TextBox import TextBox
-import random
+
 
 class Game:
     pg.init()
@@ -9,36 +10,39 @@ class Game:
     screen.fill([255, 255, 255])
 
     def __init__(self, size = 5):
-        # TextBox.set_size([])
         self.size = size
+        TextBox.set_size(TextBox, self.size)
         self.box_arr = []
         for x in range(0, size):
             for y in range(0, size):
-                txt = TextBox([25 + (TextBox.get_width(TextBox) + 10) * x, 25 + (TextBox.get_height(TextBox) + 10) * y], 'Test!')
+                txt = TextBox([25 + (TextBox.get_width(TextBox) + 10) * x, 75 + (TextBox.get_height(TextBox) + 10) * y], 'Test!')
                 self.box_arr.append(txt)
         self.assign_color(self.box_arr)
 
     def assign_color(self, arr):
-        jumble = [] #change name later
-        for _ in range(25):
+        jumble = []
+        for _ in range(self.size ** 2):
             while(True):
-                index = random.randint(0, 24)
+                index = random.randint(0, self.size ** 2 - 1)
                 if index in jumble:
                     continue
                 jumble.append(index)
                 break
-        for r in range(0, 8):
+        red_bound = (self.size ** 2) // 3
+        blue_bound = red_bound * 2 + 1
+        num_bomb = self.size - 4
+        for r in range(0, red_bound):
             arr[jumble[r]].set_real_color('red')
-        for b in range(8, 17):
+        for b in range(red_bound, blue_bound):
             arr[jumble[b]].set_real_color('blue')
-        for n in range(17, 24):
+        for n in range(blue_bound, len(jumble) - num_bomb):
             arr[jumble[n]].set_real_color('normal')
-        arr[jumble[24]].set_real_color('bomb')
+        for e in range(len(jumble) - num_bomb, len(jumble)):
+            arr[jumble[e]].set_real_color('bomb')
 
     def run(self):
         running = True
         while running:
-            actions = []
             for event in pg.event.get():
                 if (event.type == pg.KEYDOWN):
                     if (event.key == pg.K_q):
@@ -57,8 +61,7 @@ class Game:
                         x.small_text()
             pg.display.flip()
         pg.quit()
-        print(actions)
 
 if __name__ == "__main__":
-    g = Game()
+    g = Game(5)
     g.run()

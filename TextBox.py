@@ -2,7 +2,7 @@ import pygame as pg
 
 class TextBox:
     pg.init()
-    box_width, box_height = 270, 160 #10 and 10 for 5x5
+    box_width, box_height = 270, 152 #10 and 10 for 5x5
     screen = pg.display.set_mode((0,0), pg.FULLSCREEN)
     font1 = pg.font.SysFont('times', 24)
     font_style1 = font1
@@ -16,12 +16,12 @@ class TextBox:
     original_color = [200, 200, 200]
     selected_color = [253, 245, 232]
 
-    normal_color = [206, 187, 166]
+    normal_color = [236, 217, 196]
     red_color = [220, 0, 0]
     blue_color = [0, 0, 220]
     bomb_color = [128, 128, 128]
 
-    def __init__(self, coords, text): 
+    def __init__(self, coords, text):
         self.color = self.original_color
         self.real_color = ''
         self.text = text
@@ -61,9 +61,9 @@ class TextBox:
     def get_rect(self):
         return pg.Rect(self.coords[0], self.coords[1], self.box_width, self.box_height)
 
-    def set_size(self, box_dimen):
-        TextBox.box_width = box_dimen[0]
-        TextBox.box_height = box_dimen[1]
+    def set_size(self, board_size):
+        TextBox.box_width = (1390 - ((board_size - 1) * 10)) // board_size
+        TextBox.box_height = (800 - ((board_size - 1) * 10)) // board_size
 
     def set_real_color(self, txt):
         switcher = {
