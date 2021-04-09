@@ -17,8 +17,8 @@ class TextBox:
     selected_color = [253, 245, 232]
 
     normal_color = [206, 187, 166]
-    red_color = [200, 0, 0]
-    blue_color = [0, 0, 200]
+    red_color = [220, 0, 0]
+    blue_color = [0, 0, 220]
     bomb_color = [128, 128, 128]
 
     def __init__(self, coords, text): 
@@ -73,6 +73,7 @@ class TextBox:
             'bomb' : self.bomb_color
         }
         self.real_color = switcher.get(txt.lower())
+        return self.real_color
 
     def reveal_color(self):
         self.color = self.real_color
