@@ -18,7 +18,7 @@ class TextBox:
 
     normal_color = [236, 217, 196]
     red_color = [220, 0, 0]
-    blue_color = [0, 0, 220]
+    blue_color = [65, 105, 225]
     bomb_color = [128, 128, 128]
 
     def __init__(self, coords, text=''):
